@@ -6,6 +6,8 @@ If you are looking for an easy way to get started building or training your own 
 easier way. Just clone, install dependencies and run as there are no tools required that are not available
 via NPM.
 
+![MSNIT Example](https://github.com/jacob-ebey/ml-boilerplate/raw/master/images/xor.png)
+
 ## Getting started
 
 Install Yarn if you don't have it
