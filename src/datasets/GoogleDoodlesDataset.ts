@@ -66,9 +66,9 @@ export class GoogleDoodlesDataset implements Dataset {
 
     // Slice the the images and labels into train and test sets.
     this.trainImages = data.slice(0, IMAGE_SIZE * trainCount)
-    this.trainLabels = data.slice(0, this.classCount * trainCount)
-    this.testImages = data.slice(IMAGE_SIZE * testCount)
-    this.testLabels = data.slice(this.classCount * testCount)
+    this.trainLabels = labels.slice(0, this.classCount * trainCount)
+    this.testImages = data.slice(IMAGE_SIZE * trainCount)
+    this.testLabels = labels.slice(this.classCount * trainCount)
   }
 
   public nextTrainBatch (batchSize: number) {
@@ -100,8 +100,7 @@ export class GoogleDoodlesDataset implements Dataset {
 
       batchImagesArray.set(image, i * IMAGE_SIZE)
 
-      const label =
-        data[1].slice(idx * this.classCount, idx * this.classCount + this.classCount)
+      const label = data[1].slice(idx * this.classCount, idx * this.classCount + this.classCount)
       batchLabelsArray.set(label, i * this.classCount)
     }
 

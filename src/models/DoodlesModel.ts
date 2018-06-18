@@ -43,7 +43,7 @@ export class DoodlesModel implements Model<DoodlesModelProps> {
       },
       layer2Strides: {
         type: 'number',
-        label: 'Layer2 (MaxPool2D): ',
+        label: 'Layer2 (MaxPool2D): Strides',
         defaultValue: 2
       },
       layer3Filters: {
@@ -63,7 +63,7 @@ export class DoodlesModel implements Model<DoodlesModelProps> {
       },
       layer4Strides: {
         type: 'number',
-        label: 'Layer4 (MaxPool2D): ',
+        label: 'Layer4 (MaxPool2D): Strides',
         defaultValue: 2
       }
     }
@@ -117,7 +117,7 @@ export class DoodlesModel implements Model<DoodlesModelProps> {
 
   // Compile the model with an optimizer for training
   public compileModel = (model: TfModel, props: DoodlesModelProps) => {
-    const optimizer = train.adam(props.learningRate)
+    const optimizer = train.sgd(props.learningRate)
 
     model.compile({
       loss: 'categoricalCrossentropy',

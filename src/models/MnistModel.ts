@@ -43,7 +43,7 @@ export class MnistModel implements Model<MnistModelProps> {
       },
       layer2Strides: {
         type: 'number',
-        label: 'Layer2 (MaxPool2D): ',
+        label: 'Layer2 (MaxPool2D): Strides',
         defaultValue: 2
       },
       layer3Filters: {
@@ -63,7 +63,7 @@ export class MnistModel implements Model<MnistModelProps> {
       },
       layer4Strides: {
         type: 'number',
-        label: 'Layer4 (MaxPool2D): ',
+        label: 'Layer4 (MaxPool2D): Strides',
         defaultValue: 2
       }
     }
