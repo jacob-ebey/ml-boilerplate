@@ -13,11 +13,12 @@ html, body, #root {
 }
 
 .App-header {
+  height: 70px;
+  min-height: 70px;
   display: flex;
   align-items: center;
   background-color: #222;
-  padding: 20px;
-  color: white;
+  padding: 0 1em;
 }
 
 .App-header-links {
@@ -32,9 +33,13 @@ html, body, #root {
   padding-left: 1em;
 }
 
+.App-icon {
+  width: 39px;
+  height: 42px;
+  padding-right: 1em;
+}
+
 .App-title {
-  font-size: 1.5em;
-  color: white;
   flex-grow: 1;
   text-decoration: none;
 }

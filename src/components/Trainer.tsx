@@ -241,8 +241,6 @@ export class Trainer<TModelProps, TInput, TResult> extends React.Component<Train
       if (batch.expected.shape[1] === output.shape[1]) {
         const results: Array<PredictResult<TInput, TResult>> = []
 
-        console.log(output.shape)
-
         for (let i = 0; i < output.shape[0]; i++) {
           results.push({
             input: processInput(batch.input.slice([ i, 0 ], [ 1, batch.input.shape[1] ])),

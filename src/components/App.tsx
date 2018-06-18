@@ -9,6 +9,7 @@ import { Mnist } from '../pages/Mnist'
 import { Xor } from '../pages/Xor'
 
 import './App.css'
+import * as icon from '../tensorflow_logo.png'
 
 export class App extends React.Component {
   public render () {
@@ -17,7 +18,10 @@ export class App extends React.Component {
         <Fabric>
           <div className='App'>
             <header className='App-header'>
-              <h2 className='App-title'><Link to='/' className='App-title'>Tensorflow JS Boilerplate</Link></h2>
+              <img className='App-icon' src={icon} />
+              <div className='App-title'>
+                <Link to='/' className='App-title ms-fontSize-xl ms-fontColor-white'>Tensorflow JS Boilerplate</Link>
+              </div>
               <div className='App-header-links'>
                 <Link to='/mnist' className='App-header-link'>MNIST</Link>
                 <Link to='/xor' className='App-header-link'>XOR</Link>
