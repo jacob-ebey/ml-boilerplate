@@ -10,7 +10,7 @@ export const defaultTrainerProps: TrainerStoreProps = {
   batchSize: 64,
   batches: 100,
   testBatchSize: 1000,
-  testFrequency: 20
+  testFrequency: 100
 }
 
 export class TrainerStore<TModelProps, TInput, TResult> {

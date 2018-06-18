@@ -15,7 +15,7 @@
  * =============================================================================
  */
 
-import * as tf from '@tensorflow/tfjs'
+import { tensor2d, util } from '@tensorflow/tfjs'
 import { Dataset } from '../types/models'
 
 const IMAGE_SIZE = 784
@@ -109,8 +109,8 @@ export class MnistDataset implements Dataset {
 
     // Create shuffled indices into the train/test set for when we select a
     // random dataset element for training / validation.
-    this.trainIndices = tf.util.createShuffledIndices(NUM_TRAIN_ELEMENTS)
-    this.testIndices = tf.util.createShuffledIndices(NUM_TEST_ELEMENTS)
+    this.trainIndices = util.createShuffledIndices(NUM_TRAIN_ELEMENTS)
+    this.testIndices = util.createShuffledIndices(NUM_TEST_ELEMENTS)
 
     // Slice the the images and labels into train and test sets.
     this.trainImages =
@@ -122,7 +122,7 @@ export class MnistDataset implements Dataset {
       this.datasetLabels.slice(NUM_CLASSES * NUM_TRAIN_ELEMENTS)
   }
 
-  nextTrainBatch (batchSize: number) {
+  public nextTrainBatch (batchSize: number) {
     return this.nextBatch(
       batchSize, [ this.trainImages, this.trainLabels ], () => {
         this.shuffledTrainIndex =
@@ -131,7 +131,7 @@ export class MnistDataset implements Dataset {
       })
   }
 
-  nextTestBatch (batchSize: number) {
+  public nextTestBatch (batchSize: number) {
     return this.nextBatch(batchSize, [ this.testImages, this.testLabels ], () => {
       this.shuffledTestIndex =
         (this.shuffledTestIndex + 1) % this.testIndices.length
@@ -139,7 +139,7 @@ export class MnistDataset implements Dataset {
     })
   }
 
-  nextBatch (batchSize: number, data: any, index: () => number) {
+  public nextBatch (batchSize: number, data: any, index: () => number) {
     const batchImagesArray = new Float32Array(batchSize * IMAGE_SIZE)
     const batchLabelsArray = new Uint8Array(batchSize * NUM_CLASSES)
 
@@ -157,8 +157,8 @@ export class MnistDataset implements Dataset {
 
     // Reshape the training data from [64, 28x28] to [64, 28, 28, 1] so
     // that we can feed it to our convolutional neural net.
-    const input = tf.tensor2d(batchImagesArray, [ batchSize, IMAGE_SIZE ]).reshape([ batchSize, 28, 28, 1 ])
-    const expected = tf.tensor2d(batchLabelsArray, [ batchSize, NUM_CLASSES ])
+    const input = tensor2d(batchImagesArray, [ batchSize, IMAGE_SIZE ]).reshape([ batchSize, 28, 28, 1 ])
+    const expected = tensor2d(batchLabelsArray, [ batchSize, NUM_CLASSES ])
 
     return {
       input,

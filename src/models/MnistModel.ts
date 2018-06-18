@@ -49,7 +49,7 @@ export class MnistModel implements Model<MnistModelProps> {
       layer3Filters: {
         type: 'number',
         label: 'Layer3 (Cov2D): Filters',
-        defaultValue: 16
+        defaultValue: 5
       },
       layer3KernelSize: {
         type: 'number',

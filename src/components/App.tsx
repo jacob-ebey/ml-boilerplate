@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Link } from 'react-router-dom'
 import { Fabric } from 'office-ui-fabric-react/lib/Fabric'
 import 'office-ui-fabric-react/dist/css/fabric.min.css'
 
+import { Doodles } from '../pages/Doodles'
 import { Home } from '../pages/Home'
 import { Mnist } from '../pages/Mnist'
 import { Xor } from '../pages/Xor'
@@ -25,10 +26,12 @@ export class App extends React.Component {
               <div className='App-header-links'>
                 <Link to='/mnist' className='App-header-link'>MNIST</Link>
                 <Link to='/xor' className='App-header-link'>XOR</Link>
+                <Link to='/doodles' className='App-header-link'>Doodles</Link>
               </div>
             </header>
             <div className='App-content'>
                 <Route exact path='/' component={Home} />
+                <Route path='/doodles' component={Doodles} />
                 <Route path='/mnist' component={Mnist} />
                 <Route path='/xor' component={Xor} />
             </div>
