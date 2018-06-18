@@ -1,0 +1,9 @@
+{
+  "extends": "tslint-config-standard-plus",
+  "linterOptions": {
+    "exclude": [
+      "config/**/*.js",
+      "node_modules/**/*.ts"
+    ]
+  }
+}

@@ -1,0 +1,125 @@
+.Trainer {
+  display: flex;
+  flex-direction: row;
+  flex-grow: 1;
+}
+
+@media (max-width: 479px) {
+  .Trainer {
+    flex-direction: column-reverse;
+  }
+}
+
+.Trainer-panel-header {
+  padding-left: 16px;
+  padding-right: 16px;
+  padding-bottom: 16px;
+}
+
+.Trainer-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  padding: 0 14px;
+}
+
+.Trainer-graphs {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+}
+
+.Trainer-loader {
+  margin: 1em 0;
+}
+
+.Trainer-message {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 1em;
+}
+
+#Trainer-props-panel {
+  display: flex;
+  flex-direction: column;
+}
+
+.Trainer-flex-panel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.Trainer-flex-panel > .ms-Panel-main {
+  position: relative;
+  display: flex !important;
+  flex-grow: 1;
+  left: 0 !important;
+}
+
+.Trainer-flex-panel > .ms-Panel-main > .ms-Panel-contentInner {
+  position: relative !important;
+  display: flex !important;
+  flex-grow: 1 !important;
+}
+
+.Trainer-flex-panel > .ms-Panel-main > .ms-Panel-contentInner > .ms-Panel-header {
+  margin-top: 14px !important;
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+}
+
+.Trainer-flex-panel > .ms-Panel-main > .ms-Panel-contentInner > .ms-Panel-content {
+  padding-bottom: 16px !important;
+  padding-left: 16px !important;
+  padding-right: 16px !important;
+}
+
+@media (min-width: 768px) {
+  .Trainer-flex-panel > .ms-Panel-main {
+    width: 340px !important;
+  }
+}
+
+.Trainer-flex-panel-layer {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.Trainer-flex-panel-layer > .ms-Layer-content {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.Trainer-flex-panel-layer > .ms-Layer-content > [role='dialog'] {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.Predictor-items {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.Predictor-item {
+  margin: 5px 0;
+}
+
+.Predictor-item-label {
+  padding: 5px;
+}
+
+.Predictor-item-label_success {
+  background-color: green;
+}
+
+.Predictor-item-label_fail {
+  background-color: red;
+}
