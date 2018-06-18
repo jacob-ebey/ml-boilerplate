@@ -5,10 +5,17 @@ import { PredictionProps } from './Trainer'
 export class MnistImageRenderer extends React.Component<PredictionProps<Float32Array, number>> {
   private canvas: HTMLCanvasElement
 
+  // The below static methods are used to transform data before it hits the UX for rendering.
+  // We define these as static to call within tf.tidy so we can keep memory from going bat-shit crazy.
+
+  // The preProcessInput static method is called with the input tensor to transform
+  // to the expected visualization types defined above in the PredictionProps<TInput, TOutput>
   public static preProcessInput (tensor: Tensor): Float32Array {
     return tensor.flatten().dataSync() as Float32Array
   }
 
+  // The preProcessInput static method is called with the output and expected tensor to transform
+  // to the expected visualization types defined above in the PredictionProps<TInput, TOutput>
   public static preProcessOutput (tensor: Tensor): number {
     return (tensor.argMax(1).dataSync() as Float32Array)[0]
   }
@@ -21,6 +28,8 @@ export class MnistImageRenderer extends React.Component<PredictionProps<Float32A
     this.draw()
   }
 
+  // Choose how you want to render the results.
+  // The 'Predictor-' classes are provided for convenience.
   public render () {
     const { output, expected } = this.props
 
@@ -43,6 +52,7 @@ export class MnistImageRenderer extends React.Component<PredictionProps<Float32A
     this.canvas = ref
   }
 
+  // Draw the image to the canvas
   private draw = () => {
     const { input: data } = this.props
 

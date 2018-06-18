@@ -2,6 +2,7 @@ import { Model as TfModel, layers, sequential, train } from '@tensorflow/tfjs'
 
 import { Model, ModelProps } from '../types/models'
 
+// Define your user configurable properties
 export interface MnistModelProps {
   learningRate: number
   layer1Filters: number
@@ -17,6 +18,7 @@ export interface MnistModelProps {
 export class MnistModel implements Model<MnistModelProps> {
   public get label (): string { return 'MNIST CNN Model' }
 
+  // Give your user configurable properties default values
   public get config (): ModelProps<MnistModelProps> {
     return {
       learningRate: {
@@ -67,6 +69,7 @@ export class MnistModel implements Model<MnistModelProps> {
     }
   }
 
+  // Build your model
   public createAndCompileModel = (props: MnistModelProps) => {
     const model = sequential()
 
@@ -105,11 +108,14 @@ export class MnistModel implements Model<MnistModelProps> {
       units: 10
     }))
 
+    // Reuse the compileModel method to keep the two separate paths (creating and re-initializing)
+    // in sync :)
     this.compileModel(model, props)
 
     return model
   }
 
+  // Compile the model with an optimizer for training
   public compileModel = (model: TfModel, props: MnistModelProps) => {
     const optimizer = train.sgd(props.learningRate)
 
