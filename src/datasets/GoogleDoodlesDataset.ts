@@ -13,10 +13,8 @@ export class GoogleDoodlesDataset implements Dataset {
   private shuffledTestIndex: number
   private trainIndices: any
   private testIndices: any
-  private trainImages: any
-  private trainLabels: any
-  private testImages: any
-  private testLabels: any
+  private images: any
+  private labels: any
   private imageCount: number
   private classCount: number
 
@@ -61,19 +59,18 @@ export class GoogleDoodlesDataset implements Dataset {
     const trainCount = Number.parseInt(`${this.imageCount * 0.8}`, 10)
     const testCount = this.imageCount - trainCount
 
-    this.trainIndices = util.createShuffledIndices(trainCount)
-    this.testIndices = util.createShuffledIndices(testCount)
+    const indices = util.createShuffledIndices(this.imageCount)
 
-    // Slice the the images and labels into train and test sets.
-    this.trainImages = data.slice(0, IMAGE_SIZE * trainCount)
-    this.trainLabels = labels.slice(0, this.classCount * trainCount)
-    this.testImages = data.slice(IMAGE_SIZE * trainCount)
-    this.testLabels = labels.slice(this.classCount * trainCount)
+    this.trainIndices = indices.slice(0, testCount)
+    this.testIndices = indices.slice(testCount)
+
+    this.images = data
+    this.labels = labels
   }
 
   public nextTrainBatch (batchSize: number) {
     return this.nextBatch(
-      batchSize, [ this.trainImages, this.trainLabels ], () => {
+      batchSize, [ this.images, this.labels ], () => {
         this.shuffledTrainIndex =
           (this.shuffledTrainIndex + 1) % this.trainIndices.length
         return this.trainIndices[this.shuffledTrainIndex]
@@ -81,7 +78,7 @@ export class GoogleDoodlesDataset implements Dataset {
   }
 
   public nextTestBatch (batchSize: number) {
-    return this.nextBatch(batchSize, [ this.testImages, this.testLabels ], () => {
+    return this.nextBatch(batchSize, [ this.images, this.labels ], () => {
       this.shuffledTestIndex =
         (this.shuffledTestIndex + 1) % this.testIndices.length
       return this.testIndices[this.shuffledTestIndex]
